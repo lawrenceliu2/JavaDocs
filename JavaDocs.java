@@ -2,10 +2,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-public class JavaDocs extends JFrame{ //implements ActionListener{
+public class JavaDocs extends JFrame implements ActionListener{
     private Container pane;
     private JTextField t;
-    private JButton a, b;
+    private JButton loadButton, saveButton, graphs;
+    final JFileChooser fc = new JFileChooser();
 
     
     public JavaDocs(){
@@ -17,15 +18,31 @@ public class JavaDocs extends JFrame{ //implements ActionListener{
 	pane=this.getContentPane();
 	pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
 
-	a = new JButton("Load File");
+	loadButton = new JButton("Load File");
+	loadButton.addActionListener(this);
 
-	b = new JButton("Save File");
+	saveButton = new JButton("Save File");
+	saveButton.addActionListener(this);
+
+	graphs = new JButton("Show me graphy stuffs");
 
 	t = new JTextField();
 
-	pane.add(a);
-	pane.add(b);
-	pane.add(t);
+	JPanel buttons = new JPanel();
+	buttons.add(loadButton);
+	buttons.add(saveButton);
+
+	pane.add (buttons);
+	pane.add (t);
+	pane.add (graphs);
+    }
+
+    public void actionPerformed (ActionEvent e){
+	if (e.getSource() == loadButton){
+	    if (e.getSource() == loadButton) {
+		int returnVal = fc.showOpenDialog(JavaDocs.this);
+	    }
+	}
     }
 
 }
