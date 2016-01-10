@@ -30,6 +30,8 @@ public class JavaDocs extends JFrame implements ActionListener{
 	graphs = new JButton("Show me graphy stuffs");
 
 	t = new JTextArea();
+	JScrollPane scrollPane = new JScrollPane(t);
+	t.setEditable(true);
 
 	JPanel buttons = new JPanel();
 	buttons.add(loadButton);
