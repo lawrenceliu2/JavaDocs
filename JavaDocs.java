@@ -21,14 +21,17 @@ public class JavaDocs extends JFrame implements ActionListener{
 	pane=this.getContentPane();
 	pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
 
+	//load button
 	loadButton = new JButton("Load File");
 	loadButton.addActionListener(this);
 
+	//save button
 	saveButton = new JButton("Save File");
 	saveButton.addActionListener(this);
 
 	graphs = new JButton("Show me graphy stuffs");
 
+	//TextArea where you type things
 	t = new JTextArea();
 	JScrollPane scrollPane = new JScrollPane(t);
 	t.setEditable(true);
@@ -70,7 +73,12 @@ public class JavaDocs extends JFrame implements ActionListener{
 	}
 
 	if (e.getSource() == saveButton){
+	    FileWriter w = new FileWriter();
+	    String text = t.getText();
 
+	    w.write(text);
+	    w.close();
+	    
 	}
     }
 
