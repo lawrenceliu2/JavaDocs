@@ -21,17 +21,22 @@ public class JavaDocs extends JFrame implements ActionListener{
 	pane=this.getContentPane();
 	pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
 
+	//load button
 	loadButton = new JButton("Load File");
 	loadButton.addActionListener(this);
 
+	//save button
 	saveButton = new JButton("Save File");
 	saveButton.addActionListener(this);
 
 	graphs = new JButton("Show me graphy stuffs");
 
-	t = new JTextArea();
-	JScrollPane scrollPane = new JScrollPane(t);
-	t.setEditable(true);
+	//TextArea where you type things
+	t = new JTextArea(
+			  "This is your workspace!\n\n" +
+			  "If you would like to open a text file, use the 'Load File' button above!\n\n" +
+			  "Otherwise, make a new file by deleting this text and pressing the 'Save File' button when needed!\n"
+			  );
 
 	JPanel buttons = new JPanel();
 	buttons.add(loadButton);
@@ -56,13 +61,17 @@ public class JavaDocs extends JFrame implements ActionListener{
 		System.out.println("dingus");
 	    }
 
+	    //Clears the text in the TextArea
+	    t.replaceRange("",0,197);/*The last number is the exact end of the 
+				       default text in the text area. We can 
+				       change both whenever.*/
 	    text="";
 	    try{
 		Scanner s = new Scanner(file);
 		while (s.hasNext()){
 		    text+=s.next();
 		}
-	        t.append(text);
+	        t.append(text+"\n");
 	    }catch(FileNotFoundException error){
 		System.out.println("File '"+file+"' not found, try again!");
 		//Pretty sure this will never happen
@@ -70,7 +79,11 @@ public class JavaDocs extends JFrame implements ActionListener{
 	}
 
 	if (e.getSource() == saveButton){
+	    FileWriter w = new FileWriter();
+	    String text = t.getText();
 
+	    w.write(text);
+	    w.close();
 	}
     }
 
