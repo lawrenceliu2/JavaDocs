@@ -32,11 +32,11 @@ public class JavaDocs extends JFrame implements ActionListener{
 	graphs = new JButton("Show me graphy stuffs");
 
 	//TextArea where you type things
-	t = new JTextArea(
-			  "This is your workspace!\n\n" +
+	t = new JTextArea();
+			  /*"This is your workspace!\n\n" +
 			  "If you would like to open a text file, use the 'Load File' button above!\n\n" +
 			  "Otherwise, make a new file by deleting this text and pressing the 'Save File' button when needed!\n"
-			  );
+			  );*/
 
 	JPanel buttons = new JPanel();
 	buttons.add(loadButton);
@@ -51,9 +51,9 @@ public class JavaDocs extends JFrame implements ActionListener{
 	File path = null;
 	if (e.getSource() == loadButton){
 	    int returnVal = 0;
-	    if (e.getSource() == loadButton) {
-		returnVal = fc.showOpenDialog(JavaDocs.this);
-	    }
+	    
+	    returnVal = fc.showOpenDialog(JavaDocs.this);
+	    
 
 	    File file = null;
 	    if (returnVal == JFileChooser.APPROVE_OPTION){
@@ -63,8 +63,8 @@ public class JavaDocs extends JFrame implements ActionListener{
 		System.out.println("dingus");
 	    }
 
-	    //Clears the text in the TextArea
-	    t.replaceRange("",0,197);/*The last number is the exact end of the 
+	    /*//Clears the text in the TextArea
+	    t.replaceRange("",0,197);The last number is the exact end of the 
 				       default text in the text area. We can 
 				       change both whenever.*/
 	    text="";
@@ -73,7 +73,7 @@ public class JavaDocs extends JFrame implements ActionListener{
 		while (s.hasNext()){
 		    text+=s.next();
 		}
-	        t.append(text+"\n");
+	        t.setText(text+"\n");
 	    }catch(FileNotFoundException error){
 		System.out.println("File '"+file+"' not found, try again!");
 		//Pretty sure this will never happen
@@ -81,14 +81,13 @@ public class JavaDocs extends JFrame implements ActionListener{
 	}
 
 	if (e.getSource() == saveButton){
-	    FileWriter w = new FileWriter(path);
-	    String text = t.getText();
-
 	    try{
+		FileWriter w = new FileWriter("test.txt");
+		text = t.getText();
 		w.write(text);
 		w.close();
 	    }catch(IOException error){
-		System.out.println("something went wrong");
+		System.out.println(error);
 	    }
 
 	}

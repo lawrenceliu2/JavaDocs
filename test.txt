@@ -1,1 +1,2 @@
-sample text
+hi how are you
+this is java
