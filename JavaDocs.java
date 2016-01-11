@@ -10,6 +10,7 @@ public class JavaDocs extends JFrame implements ActionListener{
     private JButton loadButton, saveButton, graphs;
     final JFileChooser fc = new JFileChooser();
     private String text;
+    private File path;
 
     
     public JavaDocs(){
@@ -48,7 +49,7 @@ public class JavaDocs extends JFrame implements ActionListener{
     }
 
     public void actionPerformed (ActionEvent e){
-	File path = null;
+	path = null;
 	if (e.getSource() == loadButton){
 	    int returnVal = 0;
 	    
@@ -82,7 +83,7 @@ public class JavaDocs extends JFrame implements ActionListener{
 
 	if (e.getSource() == saveButton){
 	    try{
-		FileWriter w = new FileWriter("test.txt");
+		FileWriter w = new FileWriter(path);
 		text = t.getText();
 		w.write(text);
 		w.close();
