@@ -32,17 +32,11 @@ public class JavaDocs extends JFrame implements ActionListener{
 	graphs = new JButton("Show me graphy stuffs");
 
 	//TextArea where you type things
-<<<<<<< HEAD
 	t = new JTextArea(
 			  "This is your workspace!\n\n" +
 			  "If you would like to open a text file, use the 'Load File' button above!\n\n" +
 			  "Otherwise, make a new file by deleting this text and pressing the 'Save File' button when needed!\n"
 			  );
-=======
-	t = new JTextArea();
-	JScrollPane scrollPane = new JScrollPane(t);
-	t.setEditable(true);
->>>>>>> 014b804307ba05c3347dcbea23aac209dc474dcd
 
 	JPanel buttons = new JPanel();
 	buttons.add(loadButton);

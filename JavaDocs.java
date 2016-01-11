@@ -48,6 +48,7 @@ public class JavaDocs extends JFrame implements ActionListener{
     }
 
     public void actionPerformed (ActionEvent e){
+	File path = null;
 	if (e.getSource() == loadButton){
 	    int returnVal = 0;
 	    if (e.getSource() == loadButton) {
@@ -57,6 +58,7 @@ public class JavaDocs extends JFrame implements ActionListener{
 	    File file = null;
 	    if (returnVal == JFileChooser.APPROVE_OPTION){
 		file = fc.getSelectedFile();
+		path = file;
 	    } else {
 		System.out.println("dingus");
 	    }
@@ -79,15 +81,16 @@ public class JavaDocs extends JFrame implements ActionListener{
 	}
 
 	if (e.getSource() == saveButton){
-	    FileWriter w = new FileWriter();
+	    FileWriter w = new FileWriter(path);
 	    String text = t.getText();
 
-	    w.write(text);
-	    w.close();
-<<<<<<< HEAD
-=======
-	    
->>>>>>> 014b804307ba05c3347dcbea23aac209dc474dcd
+	    try{
+		w.write(text);
+		w.close();
+	    }catch(IOException error){
+		System.out.println("something went wrong");
+	    }
+
 	}
     }
 
