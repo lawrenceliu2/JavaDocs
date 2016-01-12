@@ -9,8 +9,9 @@ public class JavaDocs extends JFrame implements ActionListener{
     private JTextArea t;
     private JButton loadButton, saveButton, graphs;
     final JFileChooser fc = new JFileChooser();
+    private JLabel fileName;
     private String text;
-    private File path;
+    private String path;
 
     
     public JavaDocs(){
@@ -30,6 +31,9 @@ public class JavaDocs extends JFrame implements ActionListener{
 	saveButton = new JButton("Save File");
 	saveButton.addActionListener(this);
 
+	//File location
+	fileName = new JLabel("File Name");
+
 	graphs = new JButton("Show me graphy stuffs");
 
 	//TextArea where you type things
@@ -42,6 +46,7 @@ public class JavaDocs extends JFrame implements ActionListener{
 	JPanel buttons = new JPanel();
 	buttons.add(loadButton);
 	buttons.add(saveButton);
+	buttons.add(fileName);
 
 	pane.add (buttons);
 	pane.add (t);
@@ -49,7 +54,6 @@ public class JavaDocs extends JFrame implements ActionListener{
     }
 
     public void actionPerformed (ActionEvent e){
-	path = null;
 	if (e.getSource() == loadButton){
 	    int returnVal = 0;
 	    
@@ -59,7 +63,7 @@ public class JavaDocs extends JFrame implements ActionListener{
 	    File file = null;
 	    if (returnVal == JFileChooser.APPROVE_OPTION){
 		file = fc.getSelectedFile();
-		path = file;
+		fileName.setText(file.getName());
 	    } else {
 		System.out.println("dingus");
 	    }
@@ -82,11 +86,15 @@ public class JavaDocs extends JFrame implements ActionListener{
 	}
 
 	if (e.getSource() == saveButton){
-	    try{
-		FileWriter w = new FileWriter(path);
+	    try{	
+		FileWriter w = new FileWriter(fileName.getText());
+		System.out.println("FileWriter constructed.");
 		text = t.getText();
+		System.out.println("Text added.");
 		w.write(text);
+		System.out.println("Text written.");
 		w.close();
+		System.out.println("FileWriter closed.");
 	    }catch(IOException error){
 		System.out.println(error);
 	    }
