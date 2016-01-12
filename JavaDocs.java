@@ -37,11 +37,11 @@ public class JavaDocs extends JFrame implements ActionListener{
 	graphs = new JButton("Show me graphy stuffs");
 
 	//TextArea where you type things
-	t = new JTextArea();
-			  /*"This is your workspace!\n\n" +
+	t = new JTextArea(
+			  "This is your workspace!\n\n" +
 			  "If you would like to open a text file, use the 'Load File' button above!\n\n" +
 			  "Otherwise, make a new file by deleting this text and pressing the 'Save File' button when needed!\n"
-			  );*/
+			  );
 
 	JPanel buttons = new JPanel();
 	buttons.add(loadButton);
@@ -88,13 +88,10 @@ public class JavaDocs extends JFrame implements ActionListener{
 	if (e.getSource() == saveButton){
 	    try{	
 		FileWriter w = new FileWriter(fileName.getText());
-		System.out.println("FileWriter constructed.");
 		text = t.getText();
-		System.out.println("Text added.");
 		w.write(text);
-		System.out.println("Text written.");
 		w.close();
-		System.out.println("FileWriter closed.");
+		JOptionPane.showMessageDialog (null, "Your file has been saved!", "File Saved",JOptionPane.PLAIN_MESSAGE);
 	    }catch(IOException error){
 		System.out.println(error);
 	    }
