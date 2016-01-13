@@ -7,7 +7,7 @@ import java.io.*;
 public class JavaDocs extends JFrame implements ActionListener{
     private Container pane;
     private JTextArea t;
-    private JButton loadButton, saveButton, graphs;
+    private JButton newFileButton, loadButton, saveButton, graphs;
     final JFileChooser fc = new JFileChooser();
     private JLabel fileName;
     private String text;
@@ -31,6 +31,10 @@ public class JavaDocs extends JFrame implements ActionListener{
 	saveButton = new JButton("Save File");
 	saveButton.addActionListener(this);
 
+	//New File Button
+	newFileButton = new JButton("New File");
+	newFileButton.addActionListener(this);
+
 	//File location
 	fileName = new JLabel("File Name");
 
@@ -44,6 +48,7 @@ public class JavaDocs extends JFrame implements ActionListener{
 			  );
 
 	JPanel buttons = new JPanel();
+	buttons.add(newFileButton);
 	buttons.add(loadButton);
 	buttons.add(saveButton);
 	buttons.add(fileName);
@@ -54,9 +59,17 @@ public class JavaDocs extends JFrame implements ActionListener{
     }
 
     public void actionPerformed (ActionEvent e){
-	if (e.getSource() == loadButton){
-	    int returnVal = 0;
+
+	if (e.getSource() == newFileButton){
+	    String newFileName = JOptionPane.showInputDialog ("Please type in your new file's name. To save and load this file properly, please end have your file end in '.txt'.");
+	    fileName.setText(newFileName);
+	    t.setText("");
+	}
 	    
+	
+	if (e.getSource() == loadButton){
+	    
+	    int returnVal = 0;
 	    returnVal = fc.showOpenDialog(JavaDocs.this);
 	    
 
@@ -66,36 +79,44 @@ public class JavaDocs extends JFrame implements ActionListener{
 		fileName.setText(file.getName());
 	    } else {
 		System.out.println("dingus");
+		//Happens when 'Cancel' Causes error and fileName is reset
 	    }
 
-	    /*//Clears the text in the TextArea
-	    t.replaceRange("",0,197);The last number is the exact end of the 
-				       default text in the text area. We can 
-				       change both whenever.*/
-	    text="";
-	    try{
-		Scanner s = new Scanner(file);
-		while (s.hasNext()){
-		    text+=s.next();
+	    if (!(fileName.getText()).endsWith(".txt")){
+		JOptionPane.showMessageDialog (null, "File not loaded. Please only load files that end in '.txt.'.", "Loading Failed",JOptionPane.PLAIN_MESSAGE);
+	    }
+	    else{
+		
+		text="";
+		try{
+		    Scanner s = new Scanner(file);
+		    while (s.hasNext()){
+			text+=s.next();
+		    }
+		    t.setText(text+"\n");
+		}catch(FileNotFoundException error){
+		    System.out.println("File '"+file+"' not found, try again!");
+		    //Pretty sure this will never happen
 		}
-	        t.setText(text+"\n");
-	    }catch(FileNotFoundException error){
-		System.out.println("File '"+file+"' not found, try again!");
-		//Pretty sure this will never happen
 	    }
 	}
+	
 
 	if (e.getSource() == saveButton){
-	    try{	
-		FileWriter w = new FileWriter(fileName.getText());
-		text = t.getText();
-		w.write(text);
-		w.close();
-		JOptionPane.showMessageDialog (null, "Your file has been saved!", "File Saved",JOptionPane.PLAIN_MESSAGE);
-	    }catch(IOException error){
-		System.out.println(error);
+	    if (!(fileName.getText()).endsWith(".txt")){
+		JOptionPane.showMessageDialog (null, "File not saved. Please only save files that end in '.txt.'.", "Saving Failed",JOptionPane.PLAIN_MESSAGE);
 	    }
-
+	    else{
+		try{	
+		    FileWriter w = new FileWriter(fileName.getText());
+		    text = t.getText();
+		    w.write(text);
+		    w.close();
+		    JOptionPane.showMessageDialog (null, "Your file has been saved!", "File Saved",JOptionPane.PLAIN_MESSAGE);
+		}catch(IOException error){
+		    System.out.println(error);
+		}
+	    }
 	}
     }
 

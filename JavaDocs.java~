@@ -9,7 +9,9 @@ public class JavaDocs extends JFrame implements ActionListener{
     private JTextArea t;
     private JButton loadButton, saveButton, graphs;
     final JFileChooser fc = new JFileChooser();
+    private JLabel fileName;
     private String text;
+    private String path;
 
     
     public JavaDocs(){
@@ -29,6 +31,9 @@ public class JavaDocs extends JFrame implements ActionListener{
 	saveButton = new JButton("Save File");
 	saveButton.addActionListener(this);
 
+	//File location
+	fileName = new JLabel("File Name");
+
 	graphs = new JButton("Show me graphy stuffs");
 
 	//TextArea where you type things
@@ -41,6 +46,7 @@ public class JavaDocs extends JFrame implements ActionListener{
 	JPanel buttons = new JPanel();
 	buttons.add(loadButton);
 	buttons.add(saveButton);
+	buttons.add(fileName);
 
 	pane.add (buttons);
 	pane.add (t);
@@ -50,19 +56,20 @@ public class JavaDocs extends JFrame implements ActionListener{
     public void actionPerformed (ActionEvent e){
 	if (e.getSource() == loadButton){
 	    int returnVal = 0;
-	    if (e.getSource() == loadButton) {
-		returnVal = fc.showOpenDialog(JavaDocs.this);
-	    }
+	    
+	    returnVal = fc.showOpenDialog(JavaDocs.this);
+	    
 
 	    File file = null;
 	    if (returnVal == JFileChooser.APPROVE_OPTION){
 		file = fc.getSelectedFile();
+		fileName.setText(file.getName());
 	    } else {
 		System.out.println("dingus");
 	    }
 
-	    //Clears the text in the TextArea
-	    t.replaceRange("",0,197);/*The last number is the exact end of the 
+	    /*//Clears the text in the TextArea
+	    t.replaceRange("",0,197);The last number is the exact end of the 
 				       default text in the text area. We can 
 				       change both whenever.*/
 	    text="";
@@ -71,7 +78,7 @@ public class JavaDocs extends JFrame implements ActionListener{
 		while (s.hasNext()){
 		    text+=s.next();
 		}
-	        t.append(text+"\n");
+	        t.setText(text+"\n");
 	    }catch(FileNotFoundException error){
 		System.out.println("File '"+file+"' not found, try again!");
 		//Pretty sure this will never happen
@@ -79,15 +86,16 @@ public class JavaDocs extends JFrame implements ActionListener{
 	}
 
 	if (e.getSource() == saveButton){
-	    FileWriter w = new FileWriter();
-	    String text = t.getText();
+	    try{	
+		FileWriter w = new FileWriter(fileName.getText());
+		text = t.getText();
+		w.write(text);
+		w.close();
+		JOptionPane.showMessageDialog (null, "Your file has been saved!", "File Saved",JOptionPane.PLAIN_MESSAGE);
+	    }catch(IOException error){
+		System.out.println(error);
+	    }
 
-	    w.write(text);
-	    w.close();
-<<<<<<< HEAD
-=======
-	    
->>>>>>> 014b804307ba05c3347dcbea23aac209dc474dcd
 	}
     }
 
