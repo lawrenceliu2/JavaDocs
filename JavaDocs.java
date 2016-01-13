@@ -90,8 +90,8 @@ public class JavaDocs extends JFrame implements ActionListener{
 		text="";
 		try{
 		    Scanner s = new Scanner(file);
-		    while (s.hasNext()){
-			text+=s.next();
+		    while (s.hasNextLine()){
+			text+=s.nextLine()+"\n";
 		    }
 		    t.setText(text+"\n");
 		}catch(FileNotFoundException error){
