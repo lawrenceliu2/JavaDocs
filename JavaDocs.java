@@ -55,56 +55,51 @@ public class JavaDocs extends JFrame implements ActionListener{
 
 	pane.add (buttons);
 	pane.add (t);
-	pane.add (graphs);
+	pane.add (graphs, BorderLayout.CENTER);
     }
 
     public void actionPerformed (ActionEvent e){
 
 	if (e.getSource() == newFileButton){
 	    String newFileName = JOptionPane.showInputDialog ("Please type in your new file's name. To save and load this file properly, please end have your file end in '.txt'.");
-	    fileName.setText(newFileName);
-	    t.setText("");
+	    if (!newFileName.equals("")){
+		fileName.setText(newFileName);
+		t.setText("");
+	    }else{}
 	}
 	    
 	
 	if (e.getSource() == loadButton){
-	    
 	    int returnVal = 0;
 	    returnVal = fc.showOpenDialog(JavaDocs.this);
-	    
 
 	    File file = null;
 	    if (returnVal == JFileChooser.APPROVE_OPTION){
 		file = fc.getSelectedFile();
 		fileName.setText(file.getName());
-	    } else {
-		System.out.println("dingus");
-		//Happens when 'Cancel' Causes error and fileName is reset
-	    }
-
-	    if (!(fileName.getText()).endsWith(".txt")){
-		JOptionPane.showMessageDialog (null, "File not loaded. Please only load files that end in '.txt.'.", "Loading Failed",JOptionPane.PLAIN_MESSAGE);
-	    }
-	    else{
-		
-		text="";
-		try{
-		    Scanner s = new Scanner(file);
-		    while (s.hasNextLine()){
-			text+=s.nextLine()+"\n";
+		if (!(fileName.getText()).endsWith(".txt")){
+		    JOptionPane.showMessageDialog (null, "File not loaded. Please only load files that end in '.txt'.", "Loading Failed",JOptionPane.PLAIN_MESSAGE);
+		}else{	
+		    text="";
+		    try{
+			Scanner s = new Scanner(file);
+			while (s.hasNextLine()){
+			    text+=s.nextLine()+"\n";
+			}
+			t.setText(text+"\n");
+		    }catch(FileNotFoundException error){
+			System.out.println("File '"+file+"' not found!");
+			//This should never happen
 		    }
-		    t.setText(text+"\n");
-		}catch(FileNotFoundException error){
-		    System.out.println("File '"+file+"' not found, try again!");
-		    //Pretty sure this will never happen
 		}
-	    }
+	    }else {}
+	    //When Cancel button or X is pressed, nothing happens
 	}
 	
 
 	if (e.getSource() == saveButton){
 	    if (!(fileName.getText()).endsWith(".txt")){
-		JOptionPane.showMessageDialog (null, "File not saved. Please only save files that end in '.txt.'.", "Saving Failed",JOptionPane.PLAIN_MESSAGE);
+		JOptionPane.showMessageDialog (null, "File not saved. Please only save files that end in '.txt'.", "Saving Failed",JOptionPane.PLAIN_MESSAGE);
 	    }
 	    else{
 		try{	
