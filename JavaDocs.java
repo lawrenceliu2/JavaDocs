@@ -7,7 +7,7 @@ import java.io.*;
 public class JavaDocs extends JFrame implements ActionListener{
     private Container pane;
     private JTextArea t;
-    private JButton newFileButton, loadButton, saveButton, graphs;
+    private JButton newFileButton, loadButton, saveButton, graphs, fonts;
     final JFileChooser fc = new JFileChooser();
     private JLabel fileName;
     private String text;
@@ -35,16 +35,22 @@ public class JavaDocs extends JFrame implements ActionListener{
 	newFileButton = new JButton("New File");
 	newFileButton.addActionListener(this);
 
-	//File location
+	//File name
 	fileName = new JLabel("File Name");
 
+	//Graphs button
 	graphs = new JButton("Show me graphy stuffs");
+
+	//Fonts button
+	fonts = new JButton("Fonts");
+	fonts.addActionListener(this);
 
 	//TextArea where you type things
 	t = new JTextArea(
 			  "This is your workspace!\n\n" +
-			  "If you would like to open a text file, use the 'Load File' button above!\n\n" +
-			  "Otherwise, make a new file by deleting this text and pressing the 'Save File' button when needed!\n"
+			  "If you would like to open a text file, use the 'Load File' button!\n\n" +
+			  "Otherwise, make a new file by pressing the 'New File' button.\n\n"+
+			  "Please remember to save your work before exiting, we are not responsible for any lost text! :)\n"
 			  );
 
 	JPanel buttons = new JPanel();
@@ -53,9 +59,13 @@ public class JavaDocs extends JFrame implements ActionListener{
 	buttons.add(saveButton);
 	buttons.add(fileName);
 
+	JPanel bottomButtons = new JPanel();
+	bottomButtons.add(fonts);
+	bottomButtons.add(graphs);
+
 	pane.add (buttons);
 	pane.add (t);
-	pane.add (graphs, BorderLayout.CENTER);
+	pane.add (bottomButtons);
     }
 
     public void actionPerformed (ActionEvent e){
@@ -115,6 +125,10 @@ public class JavaDocs extends JFrame implements ActionListener{
 		}
 	    }
 	}
+
+	if (e.getSource() == fonts){
+	    String[] choices = {"Times New Roman", "Comic Sans"};
+	    String s = JOptionPane.showInputDialog(null, "Choose your preferred font", JOptionPane.PLAIN_MESSAGE, choices, "Times New Roman");
     }
 
 }
