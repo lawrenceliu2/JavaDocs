@@ -61,9 +61,9 @@ public class JavaDocs extends JFrame implements ActionListener{
     public void actionPerformed (ActionEvent e){
 
 	if (e.getSource() == newFileButton){
-	    String newFileName = JOptionPane.showInputDialog ("Please type in your new file's name. To save and load this file properly, please end have your file end in '.txt'.");
-	    if (!newFileName.equals("")){
-		fileName.setText(newFileName);
+	    String newFileName = JOptionPane.showInputDialog ("Please type in your new file's name.");
+	    if (!newFileName.isEmpty()){
+		fileName.setText(newFileName+".txt");
 		t.setText("");
 	    }else{}
 	}
