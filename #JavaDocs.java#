@@ -58,6 +58,10 @@ public class JavaDocs extends JFrame implements ActionListener{
 	pane.add (graphs, BorderLayout.CENTER);
     }
 
+    
+
+
+
     public void actionPerformed (ActionEvent e){
 
 	if (e.getSource() == newFileButton){
