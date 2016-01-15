@@ -75,7 +75,9 @@ public class JavaDocs extends JFrame implements ActionListener{
 	    if(!(newFileName == null) && !(newFileName == "")){
 		fileName.setText(newFileName+".txt");
 		t.setText("");
-	    }else{}
+	    }else{
+		
+	    }
 	}
 	    
 	
@@ -127,12 +129,9 @@ public class JavaDocs extends JFrame implements ActionListener{
 	if (e.getSource() == fonts){
 	    String[] choices = {"Times New Roman", "Comic Sans MS"};
 	    Object s = JOptionPane.showInputDialog(null, "Choose your preferred font", "Fonts", JOptionPane.PLAIN_MESSAGE, null, choices, choices[0]);
-	    if (s!=null){
-		Font newFont = new Font(s.toString(), Font.PLAIN, (t.getFont()).getSize());
-		t.setFont(newFont);
-	    }else{}
+	    Font newFont = new Font(s.toString(), Font.PLAIN, (t.getFont()).getSize());
+	    t.setFont(newFont);
 	}
-	
     }
 
 }
