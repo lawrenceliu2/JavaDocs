@@ -136,15 +136,26 @@ public class JavaDocs extends JFrame implements ActionListener{
 	}
 	
 	if (e.getSource() == format){
-	    String[] choices = {"PLAIN", "BOLD", "ITALIC"};
+	    String[] choices = {"Plain", "Bold", "Italic"};
 	    Object s = JOptionPane.showInputDialog(null, "", "Format", JOptionPane.PLAIN_MESSAGE, null, choices, choices[0]);
 	    if (s!=null){
-		//Font newFont = new Font((t.getFont()).getName(), s.toString(), (t.getFont()).getSize());
-		//t.setFont(newFont);
-	    }else{}
+		if (s.toString().equals("Plain")){
+		    Font newFont = new Font((t.getFont()).getName(), Font.PLAIN, (t.getFont()).getSize());
+		    t.setFont(newFont);
+		}
+		if (s.toString().equals("Bold")){
+		    Font newFont = new Font((t.getFont()).getName(), Font.BOLD, (t.getFont()).getSize());
+		    t.setFont(newFont);
+		}
+		if (s.toString().equals("Italic")){
+		    Font newFont = new Font((t.getFont()).getName(), Font.ITALIC, (t.getFont()).getSize());
+		    t.setFont(newFont);
+		}
+	    }else{}	
 
 	}
 	
-    }
+    
 
+    }
 }
