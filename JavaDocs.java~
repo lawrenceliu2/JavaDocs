@@ -7,7 +7,7 @@ import java.io.*;
 public class JavaDocs extends JFrame implements ActionListener{
     private Container pane;
     private JTextArea t;
-    private JButton newFileButton, loadButton, saveButton, graphs, fonts;
+    private JButton newFileButton, loadButton, saveButton, graphs, fonts, format;
     final JFileChooser fc = new JFileChooser();
     private JLabel fileName;
     private String text;
@@ -45,6 +45,10 @@ public class JavaDocs extends JFrame implements ActionListener{
 	fonts = new JButton("Fonts");
 	fonts.addActionListener(this);
 
+	//Format the text
+	format = new JButton("Format");
+	format.addActionListener(this);
+
 	//TextArea where you type things
 	t = new JTextArea(
 			  "This is your workspace!\n\n" +
@@ -52,6 +56,8 @@ public class JavaDocs extends JFrame implements ActionListener{
 			  "Otherwise, make a new file by pressing the 'New File' button.\n\n"+
 			  "Please remember to save your work before exiting, we are not responsible for any lost text! :)\n"
 			  );
+	
+
 
 	JPanel buttons = new JPanel();
 	buttons.add(newFileButton);
@@ -61,6 +67,7 @@ public class JavaDocs extends JFrame implements ActionListener{
 
 	JPanel bottomButtons = new JPanel();
 	bottomButtons.add(fonts);
+	bottomButtons.add(format);
 	bottomButtons.add(graphs);
 
 	pane.add (buttons);
@@ -75,9 +82,7 @@ public class JavaDocs extends JFrame implements ActionListener{
 	    if(!(newFileName == null) && !(newFileName == "")){
 		fileName.setText(newFileName+".txt");
 		t.setText("");
-	    }else{
-		
-	    }
+	    }else{}
 	}
 	    
 	
@@ -127,11 +132,24 @@ public class JavaDocs extends JFrame implements ActionListener{
 	}
 
 	if (e.getSource() == fonts){
-	    String[] choices = {"Times New Roman", "Comic Sans MS"};
+	    String[] choices = {"Times New Roman", "Comic Sans MS", "Serif", "SansSerif", "Monospaced", "Dialog", "DialogInput"};
 	    Object s = JOptionPane.showInputDialog(null, "Choose your preferred font", "Fonts", JOptionPane.PLAIN_MESSAGE, null, choices, choices[0]);
-	    Font newFont = new Font(s.toString(), Font.PLAIN, (t.getFont()).getSize());
-	    t.setFont(newFont);
+	    if (s!=null){
+		Font newFont = new Font(s.toString(), Font.PLAIN, (t.getFont()).getSize());
+		t.setFont(newFont);
+	    }else{}
 	}
+	
+	if (e.getSource() == format){
+	    String[] choices = {"PLAIN", "BOLD", "ITALIC"};
+	    Object s = JOptionPane.showInputDialog(null, "", "Format", JOptionPane.PLAIN_MESSAGE, null, choices, choices[0]);
+	    if (s!=null){
+		Font newFont = new Font((t.getFont()).getName(), s.toString(), (t.getFont()).getSize());
+		t.setFont(newFont);
+	    }else{}
+
+	}
+	
     }
 
 }

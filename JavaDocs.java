@@ -92,12 +92,12 @@ public class JavaDocs extends JFrame implements ActionListener{
 
 	    File file = null;
 	    if (returnVal == JFileChooser.APPROVE_OPTION){
-		file = fc.getSelectedFile();
-		fileName.setText(file.getName());
-		if (!(fileName.getText()).endsWith(".txt")){
+		file = fc.getSelectedFile();	
+		if (!(file.getName()).endsWith(".txt")){
 		    JOptionPane.showMessageDialog (null, "File not loaded. Please only load files that end in '.txt'.", "Loading Failed",JOptionPane.PLAIN_MESSAGE);
 		}else{	
 		    text="";
+		    fileName.setText(file.getName());
 		    try{
 			Scanner s = new Scanner(file);
 			while (s.hasNextLine()){
@@ -115,38 +115,32 @@ public class JavaDocs extends JFrame implements ActionListener{
 	
 
 	if (e.getSource() == saveButton){
-	    if (!(fileName.getText()).endsWith(".txt")){
-		JOptionPane.showMessageDialog (null, "File not saved. Please only save files that end in '.txt'.", "Saving Failed",JOptionPane.PLAIN_MESSAGE);
-	    }
-	    else{
-		try{	
-		    FileWriter w = new FileWriter(fileName.getText());
-		    text = t.getText();
-		    w.write(text);
-		    w.close();
-		    JOptionPane.showMessageDialog (null, "Your file has been saved!", "File Saved",JOptionPane.PLAIN_MESSAGE);
-		}catch(IOException error){
-		    System.out.println(error);
-		}
+	    try{
+		FileWriter w = new FileWriter(fileName.getText());
+		text = t.getText();
+		w.write(text);
+		w.close();
+		JOptionPane.showMessageDialog (null, "Your file has been saved!", "File Saved",JOptionPane.PLAIN_MESSAGE);
+	    }catch(IOException error){
+		System.out.println(error);
 	    }
 	}
 
 	if (e.getSource() == fonts){
-	    String[] choices = {"Times New Roman", "Comic Sans MS"};
+	    String[] choices = {"Times New Roman", "Comic Sans MS", "Serif", "SansSerif", "Monospaced"};
 	    Object s = JOptionPane.showInputDialog(null, "Choose your preferred font", "Fonts", JOptionPane.PLAIN_MESSAGE, null, choices, choices[0]);
 	    if (s!=null){
-		System.out.println(s.toString());
 		Font newFont = new Font(s.toString(), Font.PLAIN, (t.getFont()).getSize());
 		t.setFont(newFont);
 	    }else{}
 	}
 	
 	if (e.getSource() == format){
-	    String[] choices = {"PLAIN", "BOLD", "ITALIC",};
+	    String[] choices = {"PLAIN", "BOLD", "ITALIC"};
 	    Object s = JOptionPane.showInputDialog(null, "", "Format", JOptionPane.PLAIN_MESSAGE, null, choices, choices[0]);
 	    if (s!=null){
-		Font newFont = new Font(t.getFont().toString(), s.toString(), (t.getFont()).getSize());
-		t.setFont(newFont);
+		//Font newFont = new Font((t.getFont()).getName(), s.toString(), (t.getFont()).getSize());
+		//t.setFont(newFont);
 	    }else{}
 
 	}
