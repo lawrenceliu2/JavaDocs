@@ -7,7 +7,7 @@ import java.io.*;
 public class JavaDocs extends JFrame implements ActionListener{
     private Container pane;
     private JTextArea t;
-    private JButton newFileButton, loadButton, saveButton, graphs, fonts, format;
+    private JButton newFileButton, loadButton, saveButton, fonts, format;
     final JFileChooser fc = new JFileChooser();
     private JLabel fileName;
     private String text;
@@ -38,9 +38,6 @@ public class JavaDocs extends JFrame implements ActionListener{
 	//File name
 	fileName = new JLabel("File Name");
 
-	//Graphs button
-	graphs = new JButton("Show me graphy stuffs");
-
 	//Fonts button
 	fonts = new JButton("Fonts");
 	fonts.addActionListener(this);
@@ -68,7 +65,6 @@ public class JavaDocs extends JFrame implements ActionListener{
 	JPanel bottomButtons = new JPanel();
 	bottomButtons.add(fonts);
 	bottomButtons.add(format);
-	bottomButtons.add(graphs);
 
 	pane.add (buttons);
 	pane.add (t);
