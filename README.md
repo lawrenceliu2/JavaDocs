@@ -1,5 +1,4 @@
-# JavaDocs
-# Developer's Log
+# JavaDocs Developer's Log
 
 1/19/2016
 -Removed the Graphs button, taking the project in a new direction.
