@@ -6,17 +6,18 @@ import java.io.*;
 
 public class JavaDocs extends JFrame implements ActionListener{
     private Container pane;
-    private JTextArea t;
+    private JEditorPane t;
     private JButton newFileButton, loadButton, saveButton, fonts, format;
     final JFileChooser fc = new JFileChooser();
     private JLabel fileName;
     private String text;
     private String path;
+    private JScrollPane scroll;
 
     
     public JavaDocs(){
 	this.setTitle("JavaDocs");
-	this.setSize(600,400);
+	this.setSize(800,600);
 	this.setLocation(100,100);
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
@@ -47,12 +48,15 @@ public class JavaDocs extends JFrame implements ActionListener{
 	format.addActionListener(this);
 
 	//TextArea where you type things
-	t = new JTextArea(
-			  "This is your workspace!\n\n" +
+	t = new JEditorPane("",
+	"This is your workspace!\n\n" +
 			  "If you would like to open a text file, use the 'Load File' button!\n\n" +
 			  "Otherwise, make a new file by pressing the 'New File' button.\n\n"+
 			  "Please remember to save your work before exiting, we are not responsible for any lost text! :)\n"
 			  );
+	scroll = new JScrollPane();
+	scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+	scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
 	
 
 
@@ -136,8 +140,15 @@ public class JavaDocs extends JFrame implements ActionListener{
 	    Object s = JOptionPane.showInputDialog(null, "", "Format", JOptionPane.PLAIN_MESSAGE, null, choices, choices[0]);
 	    if (s!=null){
 		if (s.toString().equals("Plain")){
-		    Font newFont = new Font((t.getFont()).getName(), Font.PLAIN, (t.getFont()).getSize());
-		    t.setFont(newFont);
+		    if (t.getSelectedText()==null){
+			Font newFont = new Font((t.getFont()).getName(), Font.PLAIN, (t.getFont()).getSize());
+			t.setFont(newFont);
+		    }else{
+			String newText=t.getSelectedText();
+			Font newFont = new Font((t.getFont()).getName(), Font.PLAIN, (t.getFont()).getSize());
+			newText.setFont(newFont);
+			t.replaceSection(newText);
+		    }
 		}
 		if (s.toString().equals("Bold")){
 		    Font newFont = new Font((t.getFont()).getName(), Font.BOLD, (t.getFont()).getSize());
