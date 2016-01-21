@@ -144,8 +144,10 @@ public class JavaDocs extends JFrame implements ActionListener{
 			Font newFont = new Font((t.getFont()).getName(), Font.PLAIN, (t.getFont()).getSize());
 			t.setFont(newFont);
 		    }else{
-			String newText="<b>"+t.getSelectedText()+"</b>";
-			t.replaceSelection(newText);
+			String newText=t.getSelectedText();
+			Font newFont = new Font((t.getFont()).getName(), Font.PLAIN, (t.getFont()).getSize());
+			newText.setFont(newFont);
+			t.replaceSection(newText);
 		    }
 		}
 		if (s.toString().equals("Bold")){
