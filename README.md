@@ -11,6 +11,7 @@
 -Things to work on next: 1. Fonts and format button can change only a highlighted portion of the text. 2. Word count and other info button. 3. Other general text editor stuff and making the GUI look better.
 
 
+
 1/20/2016
 
 -Made the interface larger.
