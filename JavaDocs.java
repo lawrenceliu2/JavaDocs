@@ -7,7 +7,7 @@ import java.io.*;
 public class JavaDocs extends JFrame implements ActionListener{
     private Container pane;
     private JEditorPane t;
-    private JButton newFileButton, loadButton, saveButton, fonts, format;
+    private JButton newFileButton, loadButton, saveButton, fonts, format, wordCount;
     final JFileChooser fc = new JFileChooser();
     private JLabel fileName;
     private String text;
@@ -47,6 +47,10 @@ public class JavaDocs extends JFrame implements ActionListener{
 	format = new JButton("Format");
 	format.addActionListener(this);
 
+	//Word Count
+	wordCount = new JButton("Word Count");
+	wordCount.addActionListener(this);
+
 	//TextArea where you type things
 	t = new JEditorPane("",
 	"This is your workspace!\n\n" +
@@ -69,6 +73,7 @@ public class JavaDocs extends JFrame implements ActionListener{
 	JPanel bottomButtons = new JPanel();
 	bottomButtons.add(fonts);
 	bottomButtons.add(format);
+	bottomButtons.add(wordCount);
 
 	pane.add (buttons);
 	pane.add (t);
@@ -145,9 +150,9 @@ public class JavaDocs extends JFrame implements ActionListener{
 			t.setFont(newFont);
 		    }else{
 			String newText=t.getSelectedText();
-			Font newFont = new Font((t.getFont()).getName(), Font.PLAIN, (t.getFont()).getSize());
-			newText.setFont(newFont);
-			t.replaceSection(newText);
+				Font newFont = new Font((t.getFont()).getName(), Font.PLAIN, (t.getFont()).getSize());
+				//newText.setFont(newFont);
+				//t.replaceSection(newText);
 		    }
 		}
 		if (s.toString().equals("Bold")){
@@ -159,6 +164,15 @@ public class JavaDocs extends JFrame implements ActionListener{
 		    t.setFont(newFont);
 		}
 	    }else{}	
+
+	}
+
+	if (e.getSource() == wordCount){
+	    String[] textGet = t.getText().split(" ");
+	    for (int i = 0; i<textGet.length; i++){
+		System.out.print(textGet[i]+" ");
+
+	    }
 
 	}
 	
