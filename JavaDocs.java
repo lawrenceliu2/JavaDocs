@@ -53,10 +53,10 @@ public class JavaDocs extends JFrame implements ActionListener{
 
 	//TextArea where you type things
 	t = new JEditorPane("",
-	"This is your workspace!\n\n" +
+			  "This is your workspace!\n\n" +
 			  "If you would like to open a text file, use the 'Load File' button!\n\n" +
 			  "Otherwise, make a new file by pressing the 'New File' button.\n\n"+
-			  "Please remember to save your work before exiting, we are not responsible for any lost text! :)\n"
+			  "Please remember to save your work before exiting, we are not responsible for any lost text!\n"
 			  );
 	scroll = new JScrollPane();
 	scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
@@ -168,11 +168,16 @@ public class JavaDocs extends JFrame implements ActionListener{
 	}
 
 	if (e.getSource() == wordCount){
-	    String[] textGet = t.getText().split(" ");
+	    int wc = 0;
+	    String[] textGet = t.getText().split("\n");
+	    textGet = t.getText().split(" ");
 	    for (int i = 0; i<textGet.length; i++){
-		System.out.print(textGet[i]+" ");
-
+	        if (!textGet[i].equals("")){
+		    wc++;
+		    System.out.println(textGet[i]);
+		    }
 	    }
+	    JOptionPane.showMessageDialog (null, "Word Count: "+wc+" words", "Word Count",JOptionPane.PLAIN_MESSAGE);
 
 	}
 	
