@@ -168,20 +168,31 @@ public class JavaDocs extends JFrame implements ActionListener{
 	}
 
 	if (e.getSource() == wordCount){
-	    int wc = 0;
-	    String[] textGet = t.getText().split("\n");
-	    textGet = t.getText().split(" ");
-	    for (int i = 0; i<textGet.length; i++){
-	        if (!textGet[i].equals("")){
-		    wc++;
-		    System.out.println(textGet[i]);
-		    }
-	    }
-	    JOptionPane.showMessageDialog (null, "Word Count: "+wc+" words", "Word Count",JOptionPane.PLAIN_MESSAGE);
-
+	    ArrayList<String> test = splitString(t.getText());
+	    Object[] testary = test.toArray();
+	    for (int i = 0; i < testary.length; i++){
+		System.out.println(testary[i]);
+	    }   
+	    JOptionPane.showMessageDialog(null, "Word Count: " + countWords(splitString(t.getText()))  + " words", "Word Count", JOptionPane.PLAIN_MESSAGE);
 	}
 	
     
 
+    }
+    
+    public ArrayList<String> splitString(String str){
+	ArrayList<String> strAryLst = new ArrayList();
+	String[] splitted = str.split("\n");
+	for (int i = 0; i < splitted.length; i++){
+	    String[] newstuff = splitted[i].split(" ");
+	    for (int j = 0; j < newstuff.length; j++){
+		strAryLst.add(newstuff[j]);
+	    }
+	}
+	return strAryLst;
+    }
+
+    public int countWords(ArrayList<String> str){
+	return str.size();
     }
 }
