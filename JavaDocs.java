@@ -61,8 +61,9 @@ public class JavaDocs extends JFrame implements ActionListener{
 	scroll = new JScrollPane();
 	scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
 	scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
+	scroll = new JScrollPane(t, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+	scroll.setBounds(10,60,780,500);
 	
-
 
 	JPanel buttons = new JPanel();
 	buttons.add(newFileButton);
@@ -76,7 +77,7 @@ public class JavaDocs extends JFrame implements ActionListener{
 	bottomButtons.add(wordCount);
 
 	pane.add (buttons);
-	pane.add (t);
+	pane.add (scroll);
 	pane.add (bottomButtons);
     }
 
