@@ -25,3 +25,9 @@
 -Word Count button added and mostly functional. Needs help with new lines without spaces but still have words.
 
 -Things to work on next: 1. Perfect the Word Count. 2. Line count, Character Count, other counts. 3. Other To-Do stuff like vertical scroll functionality, prettier GUI, selecting a part of the text to format.
+
+1/22/2016
+
+-Word Count function reworked, I (Lawrence) had a brain fart and was using unnecessary code. Works for the most part, only bug is that new lines with words but no spaces screw it up
+
+-Finally found a way to implement scrolling correctly. Barebones scrolling, view is messed up.

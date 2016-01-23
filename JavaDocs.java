@@ -22,7 +22,7 @@ public class JavaDocs extends JFrame implements ActionListener{
 	this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
 	pane=this.getContentPane();
-	pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
+        pane.setLayout(new BoxLayout(pane, BoxLayout.Y_AXIS));
 
 	//load button
 	loadButton = new JButton("Load File");
@@ -51,34 +51,53 @@ public class JavaDocs extends JFrame implements ActionListener{
 	wordCount = new JButton("Word Count");
 	wordCount.addActionListener(this);
 
-	//TextArea where you type things
+	//Text area where you type things
 	t = new JEditorPane("",
 			  "This is your workspace!\n\n" +
 			  "If you would like to open a text file, use the 'Load File' button!\n\n" +
 			  "Otherwise, make a new file by pressing the 'New File' button.\n\n"+
 			  "Please remember to save your work before exiting, we are not responsible for any lost text!\n"
 			  );
-	scroll = new JScrollPane();
-	scroll.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
-	scroll.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS); 
-	scroll = new JScrollPane(t, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
-	scroll.setBounds(10,60,780,500);
+	scroll = new JScrollPane(t, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+	
 	
 
-	JPanel buttons = new JPanel();
+        JPanel buttons = new JPanel();
 	buttons.add(newFileButton);
+        buttons.add(Box.createRigidArea(new Dimension(10,0)));
 	buttons.add(loadButton);
+	buttons.add(Box.createRigidArea(new Dimension(10,0)));
 	buttons.add(saveButton);
+	buttons.add(Box.createRigidArea(new Dimension(10,0)));
 	buttons.add(fileName);
+	buttons.setLayout(new BoxLayout(buttons, BoxLayout.LINE_AXIS));
 
 	JPanel bottomButtons = new JPanel();
 	bottomButtons.add(fonts);
+	bottomButtons.add(Box.createRigidArea(new Dimension(10,0)));
 	bottomButtons.add(format);
+	bottomButtons.add(Box.createRigidArea(new Dimension(10,0)));
 	bottomButtons.add(wordCount);
+	bottomButtons.setLayout(new BoxLayout(bottomButtons, BoxLayout.LINE_AXIS));
 
-	pane.add (buttons);
-	pane.add (scroll);
-	pane.add (bottomButtons);
+	pane.add(Box.createRigidArea(new Dimension(0,10)));
+	pane.add(buttons);
+	pane.add(Box.createRigidArea(new Dimension(0,10)));
+	pane.add(scroll);
+	pane.add(Box.createRigidArea(new Dimension(0,10)));
+	pane.add(bottomButtons);
+	pane.add(Box.createRigidArea(new Dimension(0,10)));
+
+	/*pane.add(newFileButton);
+	pane.add(loadButton);
+	pane.add(saveButton);
+	pane.add(fileName);
+	pane.add(scroll);
+	pane.add(fonts);
+	pane.add(format);
+	pane.add(wordCount);*/
+
+        
     }
 
     public void actionPerformed (ActionEvent e){
