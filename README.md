@@ -28,6 +28,14 @@
 
 1/22/2016
 
--Word Count function reworked, I (Lawrence) had a brain fart and was using unnecessary code. Works for the most part, only bug is that new lines with words but no spaces screw it up
+-Word Count function reworked, I (Lawrence) had a brain fart and was using unnecessary code. Works for the most part, only bug is that new lines with words but no spaces count as a word.
 
 -Finally found a way to implement scrolling correctly. Barebones scrolling, view is messed up.
+
+1/23/2016
+
+-Scrollbar now enabled. Text area should be fully functional with all the features included (except word count, which has only one slight bug, explained above).
+
+-New GUI layout, includes rigid areas not shown.
+
+-New bug: If you make the GUI window larger, then resize it smaller, the bounds of the text area increase and the horizontal scrollbar will appear. Purely visual, but still may need looking into.
