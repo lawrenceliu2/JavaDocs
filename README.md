@@ -1,5 +1,11 @@
 # JavaDocs Developer's Log
 
+Project Description
+JavaDocs is a user-friendly text editor that is simple yet gives many options with your text. You can change the color, font, format, etc. Once you finish messing around, you can save your file and load up another one or create a new one!
+
+Directions
+In the terminal, 'cd' to the JavaDocs directory. Once there, input 'javac Driver.java' and ignore the message about unsafe operations. Once the files compile, simple input 'java Driver' and have fun!
+
 1/19/2016
 
 -Removed the Graphs button, taking the project in a new direction.
@@ -39,3 +45,9 @@
 -New GUI layout, includes rigid areas not shown.
 
 -New bug: If you make the GUI window larger, then resize it smaller, the bounds of the text area increase and the horizontal scrollbar will appear. Purely visual, but still may need looking into.
+
+1/24/2016
+
+-New feature: Color button added, can change the color of the text to one of 12 choices.
+
+-Comments added to the code to make it more user friendly.
