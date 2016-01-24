@@ -50,4 +50,6 @@ In the terminal, 'cd' to the JavaDocs directory. Once there, input 'javac Driver
 
 -New feature: Color button added, can change the color of the text to one of 12 choices.
 
+-New feature: Font size button added, can change the size of the font to a number between 1 and 64, inclusive.
+
 -Comments added to the code to make it more user friendly.

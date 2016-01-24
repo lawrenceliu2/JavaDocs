@@ -7,7 +7,7 @@ import java.io.*;
 public class JavaDocs extends JFrame implements ActionListener{
     private Container pane;
     private JEditorPane t;
-    private JButton newFileButton, loadButton, saveButton, fonts, format, wordCount, color;
+    private JButton newFileButton, loadButton, saveButton, fonts, format, wordCount, color, fontSize;
     final JFileChooser fc = new JFileChooser();
     private JLabel fileName;
     private String text;
@@ -56,6 +56,10 @@ public class JavaDocs extends JFrame implements ActionListener{
 	color = new JButton("Color");
 	color.addActionListener(this);
 
+	//Font Size
+	fontSize = new JButton("Font Size");
+	fontSize.addActionListener(this);
+
 	//Text area where you type things
 	t = new JEditorPane("",
 	       "This is your workspace!\n\n" +
@@ -87,6 +91,8 @@ public class JavaDocs extends JFrame implements ActionListener{
 	bottomButtons.add(wordCount);
 	bottomButtons.add(Box.createRigidArea(new Dimension(10,0)));
 	bottomButtons.add(color);
+	bottomButtons.add(Box.createRigidArea(new Dimension(10,0)));
+	bottomButtons.add(fontSize);
 	bottomButtons.setLayout(new BoxLayout(bottomButtons, BoxLayout.LINE_AXIS));
 
 	//Put everything together
@@ -261,6 +267,33 @@ public class JavaDocs extends JFrame implements ActionListener{
 	    }
 	}
 
+
+	//If Font Size button is pressed
+	if (e.getSource() == fontSize){
+	    String num = JOptionPane.showInputDialog ("Please input a number greater than 0 and less than 65.", 12);
+
+	    if (num!=null&&num!=""){
+		try{
+		    int nums = Integer.parseInt(num);
+		    
+		    if (nums<1){
+			JOptionPane.showMessageDialog (null, "You cannot have a font size of less than 1! Fonts don't work that way. Settle for a larger font please!", "Font Resize Failed",JOptionPane.PLAIN_MESSAGE);
+		    }
+		    
+		    if (nums>64){
+			JOptionPane.showMessageDialog (null, "I don't care how much you can't see, 64 is big enough! Settle for a smaller font please!", "Font Resize Failed",JOptionPane.PLAIN_MESSAGE);
+		    }
+		    
+		    if (nums<65 && nums>0){
+			Font newFont = new Font(t.getFont().getName(), t.getFont().getStyle(), nums);
+			t.setFont(newFont);
+		    }
+		    
+		}catch (NumberFormatException error){
+		    JOptionPane.showMessageDialog (null, "Please input an actual number!", "Font Resize Failed",JOptionPane.PLAIN_MESSAGE);
+		}
+	    }else{}
+	}
 	
     }
 
