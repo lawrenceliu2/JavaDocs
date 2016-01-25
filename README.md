@@ -53,3 +53,5 @@ In the terminal, 'cd' to the JavaDocs directory. Once there, input 'javac Driver
 -New feature: Font size button added, can change the size of the font to a number between 1 and 64, inclusive.
 
 -Comments added to the code to make it more user friendly.
+
+-Bug fix: Word Count function fully functional, no longer counts new lines as words.
