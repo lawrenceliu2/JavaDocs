@@ -300,14 +300,15 @@ public class JavaDocs extends JFrame implements ActionListener{
     
     //Function for Count Words, not associated with any button presses
     public ArrayList<String> splitString(String str){
-	ArrayList<String> strAryLst = new ArrayList();
+	ArrayList<String> strAryLst = new ArrayList<String>();
 	String[] splitted = str.split("\n");
 	
 	for (int i = 0; i < splitted.length; i++){
 	    String[] newstuff = splitted[i].split(" ");
-	    
 	    for (int j = 0; j < newstuff.length; j++){
-		strAryLst.add(newstuff[j]);
+		if(!(newstuff[j].equals(""))){
+		    strAryLst.add(newstuff[j]);
+		}
 	    }
 	}
 	return strAryLst;
@@ -315,6 +316,9 @@ public class JavaDocs extends JFrame implements ActionListener{
 
 
     //Function for Count Words, not associated with any button presses
-    public int countWords(ArrayList<String> str){return str.size();}
+    public int countWords(String str){
+		return splitString(str).size();
+	}
     
 }
+
