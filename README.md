@@ -1,10 +1,22 @@
 # JavaDocs Developer's Log
 
 Project Description
+
 JavaDocs is a user-friendly text editor that is simple yet gives many options with your text. You can change the color, font, format, etc. Once you finish messing around, you can save your file and load up another one or create a new one!
 
+
 Directions
-In the terminal, 'cd' to the JavaDocs directory. Once there, input 'javac Driver.java' and ignore the message about unsafe operations. Once the files compile, simple input 'java Driver' and have fun!
+
+In the terminal, 'cd' to the JavaDocs directory. Once there, input 'javac Driver.java'. Once the files compile, simple input 'java Driver' and type away!
+
+
+Bugs/Things to do
+
+-save formatting
+
+-cannot change parts of text to certain formats(bold,fonts,etc) because the file is saved as txt and txt does not support formatting
+
+
 
 1/19/2016
 
