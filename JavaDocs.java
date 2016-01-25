@@ -217,7 +217,7 @@ public class JavaDocs extends JFrame implements ActionListener{
 	    for (int i = 0; i < testary.length; i++){
 		System.out.println(testary[i]);
 	    }   
-	    JOptionPane.showMessageDialog(null, "Word Count: " + countWords(splitString(t.getText()))  + " words", "Word Count", JOptionPane.PLAIN_MESSAGE);
+	    JOptionPane.showMessageDialog(null, "Word Count: " + countWords(t.getText())  + " words", "Word Count", JOptionPane.PLAIN_MESSAGE);
 	}
 
 
