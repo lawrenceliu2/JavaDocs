@@ -12,6 +12,7 @@ public class JavaDocs extends JFrame implements ActionListener{
     private JLabel fileName;
     private String text;
     private String path;
+    private String saveFormatting;
     private JScrollPane scroll;
 
 
@@ -140,6 +141,11 @@ public class JavaDocs extends JFrame implements ActionListener{
 		    //Load the text from file into the text area
 		    try{
 			Scanner s = new Scanner(file);
+			System.out.println(s.next());
+			if(s.next().equals("1 ")){
+			    t.setFont(new Font("Monospaced", Font.PLAIN, t.getFont().getSize()));
+			    System.out.println("itworked?");
+			}
 			while (s.hasNextLine()){
 			    text+=s.nextLine()+"\n";
 			}
@@ -156,17 +162,20 @@ public class JavaDocs extends JFrame implements ActionListener{
 
 	//If Save button is pressed
 	if (e.getSource() == saveButton){
-	    
-	    //Write the text from text area into the file
-	    try{
-		FileWriter w = new FileWriter(fileName.getText());
-		text = t.getText();
-		w.write(text);
-		w.close();
-		JOptionPane.showMessageDialog (null, "Your file has been saved!", "File Saved",JOptionPane.PLAIN_MESSAGE);
-	    }catch(IOException error){
-		System.out.println("File was not saved, please try again!");
-		//This should NEVER happen
+	    if(!(fileName.getText().equals("File Name"))){
+		//Write the text from text area into the file
+		try{
+		    FileWriter w = new FileWriter(fileName.getText());
+		    text = t.getText();
+		    w.write(saveFormatting + text);
+		    w.close();
+		    JOptionPane.showMessageDialog (null, "Your file has been saved!", "File Saved",JOptionPane.PLAIN_MESSAGE);
+		}catch(IOException error){
+		    System.out.println("File was not saved, please try again!");
+		    //This should NEVER happen
+		}
+	    }else{
+		JOptionPane.showMessageDialog (null, "Please create a new file!", "Error",JOptionPane.PLAIN_MESSAGE);
 	    }
 	}
 
@@ -176,9 +185,10 @@ public class JavaDocs extends JFrame implements ActionListener{
 	    String[] choices = {"Times New Roman", "Comic Sans MS", "Serif", "SansSerif", "Monospaced"};
 	    Object s = JOptionPane.showInputDialog(null, "Choose your preferred font", "Fonts", JOptionPane.PLAIN_MESSAGE, null, choices, choices[0]);
 	    
-	    if (s!=null){
+ 	    if (s!=null){
 		Font newFont = new Font(s.toString(), Font.PLAIN, t.getFont().getSize());
 		t.setFont(newFont);
+		saveFormatting = "1 ";
 	    }else{}
 	    //If Cancel or X is pressed, nothing happens
 	}
