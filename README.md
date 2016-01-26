@@ -12,9 +12,9 @@ In the terminal, 'cd' to the JavaDocs directory. Once there, input 'javac Driver
 
 Bugs/Things to do
 
--save formatting
+-Save formatting of the text
 
--cannot change parts of text to certain formats(bold,fonts,etc) because the file is saved as txt and txt does not support formatting
+-Cannot change only a part of a text's format because of the nature of our functions. If we were to implement this, it would require switching our text to html, which would drastically change all of our functions. Also, initial testing with html proved to yield negative results.
 
 
 
@@ -67,3 +67,7 @@ Bugs/Things to do
 -Comments added to the code to make it more user friendly.
 
 -Bug fix: Word Count function fully functional, no longer counts new lines as words.
+
+1/25/2016
+
+-Working on saving the format of the text so it can be loaded in the right format.

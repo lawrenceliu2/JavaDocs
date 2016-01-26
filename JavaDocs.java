@@ -291,7 +291,7 @@ public class JavaDocs extends JFrame implements ActionListener{
 		    }
 		    
 		    if (nums>64){
-			JOptionPane.showMessageDialog (null, "I don't care how much you can't see, 64 is big enough! Settle for a smaller font please!", "Font Resize Failed",JOptionPane.PLAIN_MESSAGE);
+			JOptionPane.showMessageDialog (null, "I don't care how blind you are, 64 is big enough! Settle for a smaller font please!", "Font Resize Failed",JOptionPane.PLAIN_MESSAGE);
 		    }
 		    
 		    if (nums<65 && nums>0){
