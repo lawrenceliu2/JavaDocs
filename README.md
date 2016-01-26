@@ -7,12 +7,12 @@ JavaDocs is a user-friendly text editor that is simple yet gives many options wi
 
 Directions
 
-In the terminal, 'cd' to the JavaDocs directory. Once there, input 'javac Driver.java'. Once the files compile, simple input 'java Driver' and type away!
+In the terminal, 'cd' to the JavaDocs directory. Once there, input 'javac Driver.java'. Once the files compile, simply input 'java Driver' and type away!
 
 
 Bugs/Things to do
 
--Save formatting of the text
+-Unfortunately, we could not save the formatting of the files. This is because we based our text editors on txt files, which essentially have no formatting. Perhaps we could have experimented with other file types so as to make our program more useful.
 
 -Cannot change only a part of a text's format because of the nature of our functions. If we were to implement this, it would require switching our text to html, which would drastically change all of our functions. Also, initial testing with html proved to yield negative results.
 
@@ -72,4 +72,6 @@ Bugs/Things to do
 
 1/25/2016
 
--Working on saving the format of the text so it can be loaded in the right format.
+-Working on saving the format of the text so it can be loaded in the right format. ABANDONED
+
+-Formatted the code better.

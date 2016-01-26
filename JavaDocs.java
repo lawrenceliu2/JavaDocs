@@ -10,9 +10,7 @@ public class JavaDocs extends JFrame implements ActionListener{
     private JButton newFileButton, loadButton, saveButton, fonts, format, wordCount, color, fontSize;
     final JFileChooser fc = new JFileChooser();
     private JLabel fileName;
-    private String text;
-    private String path;
-    private String saveFormatting;
+    private String text, path;
     private JScrollPane scroll;
 
 
@@ -142,10 +140,6 @@ public class JavaDocs extends JFrame implements ActionListener{
 		    try{
 			Scanner s = new Scanner(file);
 			System.out.println(s.next());
-			if(s.next().equals("1 ")){
-			    t.setFont(new Font("Monospaced", Font.PLAIN, t.getFont().getSize()));
-			    System.out.println("itworked?");
-			}
 			while (s.hasNextLine()){
 			    text+=s.nextLine()+"\n";
 			}
@@ -163,6 +157,7 @@ public class JavaDocs extends JFrame implements ActionListener{
 	//If Save button is pressed
 	if (e.getSource() == saveButton){
 	    if(!(fileName.getText().equals("File Name"))){
+		
 		//Write the text from text area into the file
 		try{
 		    FileWriter w = new FileWriter(fileName.getText());
@@ -188,7 +183,6 @@ public class JavaDocs extends JFrame implements ActionListener{
  	    if (s!=null){
 		Font newFont = new Font(s.toString(), Font.PLAIN, t.getFont().getSize());
 		t.setFont(newFont);
-		saveFormatting = "1 ";
 	    }else{}
 	    //If Cancel or X is pressed, nothing happens
 	}
@@ -200,17 +194,14 @@ public class JavaDocs extends JFrame implements ActionListener{
 	    Object s = JOptionPane.showInputDialog(null, "", "Format", JOptionPane.PLAIN_MESSAGE, null, choices, choices[0]);
 	    
 	    if (s!=null){
-		
 		if (s.toString().equals("Plain")){
 		    Font newFont = new Font(t.getFont().getName(), Font.PLAIN, t.getFont().getSize());
 		    t.setFont(newFont);
 		}
-		
 		if (s.toString().equals("Bold")){
 		    Font newFont = new Font(t.getFont().getName(), Font.BOLD, t.getFont().getSize());
 		    t.setFont(newFont);
 		}
-		
 		if (s.toString().equals("Italic")){
 		    Font newFont = new Font(t.getFont().getName(), Font.ITALIC, t.getFont().getSize());
 		    t.setFont(newFont);
@@ -223,10 +214,6 @@ public class JavaDocs extends JFrame implements ActionListener{
 	if (e.getSource() == wordCount){
 	    ArrayList<String> test = splitString(t.getText());
 	    Object[] testary = test.toArray();
-	    
-	    for (int i = 0; i < testary.length; i++){
-		System.out.println(testary[i]);
-	    }   
 	    JOptionPane.showMessageDialog(null, "Word Count: " + countWords(t.getText())  + " words", "Word Count", JOptionPane.PLAIN_MESSAGE);
 	}
 
@@ -289,16 +276,13 @@ public class JavaDocs extends JFrame implements ActionListener{
 		    if (nums<1){
 			JOptionPane.showMessageDialog (null, "You cannot have a font size of less than 1! Fonts don't work that way. Settle for a larger font please!", "Font Resize Failed",JOptionPane.PLAIN_MESSAGE);
 		    }
-		    
 		    if (nums>64){
 			JOptionPane.showMessageDialog (null, "I don't care how blind you are, 64 is big enough! Settle for a smaller font please!", "Font Resize Failed",JOptionPane.PLAIN_MESSAGE);
 		    }
-		    
 		    if (nums<65 && nums>0){
 			Font newFont = new Font(t.getFont().getName(), t.getFont().getStyle(), nums);
 			t.setFont(newFont);
-		    }
-		    
+		    }  
 		}catch (NumberFormatException error){
 		    JOptionPane.showMessageDialog (null, "Please input an actual number!", "Font Resize Failed",JOptionPane.PLAIN_MESSAGE);
 		}
@@ -324,11 +308,8 @@ public class JavaDocs extends JFrame implements ActionListener{
 	return strAryLst;
     }
 
-
     //Function for Count Words, not associated with any button presses
-    public int countWords(String str){
-		return splitString(str).size();
-	}
+    public int countWords(String str){return splitString(str).size();}
     
 }
 
