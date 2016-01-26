@@ -16,6 +16,8 @@ Bugs/Things to do
 
 -Cannot change only a part of a text's format because of the nature of our functions. If we were to implement this, it would require switching our text to html, which would drastically change all of our functions. Also, initial testing with html proved to yield negative results.
 
+-For some reason, fonts like Times New Roman and Comic Sans did not work on the school computers, but were fine on both home computers. Perhaps it is the difference between Java versions or Windows/Linux. For that reason, we have only included Times New Roman and Comic Sans as the fonts that might work. The rest are guaranteed to function properly. More fonts could have been easily included, but it would have been a waste if they did not function properly. Please take this into consideration when testing fonts.
+
 
 
 1/19/2016
